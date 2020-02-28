@@ -7,32 +7,8 @@ import pandas as pd
 
 
 def detection_plot(outputPath,trainSetCoordsPath,detectionResultsTrainSetPath,m_id,var_type):
-    """
-    # File paths
-    #################################################
-    outputPath = '/hri/localdisk/ThesisProject/Kaushik/Version_1_6_1/Landmark_based_localization/Output/'
-
-    # Metric coordinates
-    trainSetCoordsPath = '/hri/localdisk/ThesisProject/Kaushik/Kaushik/Experiment_10/Training_Images/coordinates_wp0_Kodak.txt'
-    # testSetCoordsPath  = '/hri/storage/user/haris/Kaushik/Simulator_data/Coordinates/coordinates_test.txt'
-
-    # Marker detection results
-    detectionResultsTrainSetPath = outputPath + 'result_train.csv'
-    # detectionResultsTestSetPath  = outputPath + 'Experiment5_03.02.csv'
-    # Marker Id
-    m_id = '144'
-    # Regression Degree
-    DEG = 2
-    """
-
-    # Load Files
-    #################################################
-    # trainSet = np.load(trainSetPath)
-    # testSet = np.load(testSetPath)
 
     trainSetCoords = np.loadtxt(trainSetCoordsPath, delimiter=',', usecols=(4, 5))
-
-    # trainSetCoords =   np.genfromtxt(trainSetCoordsPath,delimiter=',')
 
     detectionResultsTrainSet = pd.read_csv(detectionResultsTrainSetPath)
     markerSquaresTrainSet = detectionResultsTrainSet[
@@ -71,9 +47,6 @@ def detection_plot(outputPath,trainSetCoordsPath,detectionResultsTrainSetPath,m_
         print("All coordinates detected")
     else:
         ax.plot(unDetectedCoords[:, 0], unDetectedCoords[:, 1], 'r.', label='Missed_' + m_id + '  ' + percent + '%')
-    # ax.plot(unDetectedCoords2[:,0], unDetectedCoords2[:,1], 'g.' ,label='Missed_' + m_id2)
-
-    # plt.title('Mean Absolute Error: ' + "{:.2f}".format(MAE) ,fontweight='bold')
     ax.legend(bbox_to_anchor=(1.1, 1.05))
     plt.xlabel('X [m]', fontsize=16)
     plt.ylabel('Y [m]', fontsize=16)

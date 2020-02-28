@@ -5,10 +5,10 @@ from time import sleep
 from tkinter import *
 from tkinter import filedialog
 
-from Scripts.Aruco_Marker_Input import enter_array
-from Scripts.BuildCPPFiles import buildCPP
-from Scripts.CopyImagesFromSrc import copyUniqueImages
-from Scripts.ExecuteTemplate import execute_template_method
+from Localization_v_1_0.Scripts.Aruco_Marker_Input import enter_array
+from Localization_v_1_0.Scripts.BuildCPPFiles import buildCPP
+from Localization_v_1_0.Scripts.CopyImagesFromSrc import copyUniqueImages
+from Localization_v_1_0.Scripts.ExecuteTemplate import execute_template_method
 
 folder_path = '/hri/localdisk/ThesisProject/Kaushik/Kaushik/Testing_Sample_Script/'
 image_format = '.jpg'

@@ -1,11 +1,11 @@
 import os
-from Scripts.DetectionPlot import detection_plot
-from Scripts.createImageList import create_image_list
-from Scripts.evaluateMetricPerformance_SingleMarker import evaluate_distinct_data_performance
-from Scripts.executeTestSet import execute
-from Scripts.extractMarkerViews import extractMarkerViews
-from Scripts.run_train_test_detections import call_create_cvs
-from Scripts.trainAndExecuteNetwork import trainAndExecute
+from Localization_v_1_0.Scripts.DetectionPlot import detection_plot
+from Localization_v_1_0.Scripts.createImageList import create_image_list
+from Localization_v_1_0.Scripts.evaluateMetricPerformance_SingleMarker import evaluate_distinct_data_performance
+from Localization_v_1_0.Scripts.executeTestSet import execute
+from Localization_v_1_0.Scripts.extractMarkerViews import extractMarkerViews
+from Localization_v_1_0.Scripts.run_train_test_detections import call_create_cvs
+from Localization_v_1_0.Scripts.trainAndExecuteNetwork import trainAndExecute
 
 
 def execute_template_method(train_set_items, test_set_items):

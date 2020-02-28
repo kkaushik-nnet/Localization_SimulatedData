@@ -6,7 +6,7 @@ import pickle
 import sys
 from PIL import Image
 
-from Scripts.createSFANetwork import createSFANetwork
+from Localization_v_1_0.Scripts.createSFANetwork import createSFANetwork
 
 
 class dataGenerator:

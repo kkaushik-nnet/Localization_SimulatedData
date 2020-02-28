@@ -1,6 +1,6 @@
 import shutil
 import pandas as pd
-from tqdm import tqdm, trange
+from tqdm import tqdm
 
 
 def copyUniqueImages(coordinates_path, source_path, destination_path):
