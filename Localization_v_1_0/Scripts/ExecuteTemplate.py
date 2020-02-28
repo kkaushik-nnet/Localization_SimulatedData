@@ -35,7 +35,6 @@ def execute_template_method(train_set_items, test_set_items):
                            train_set_items[8],
                            train_set_items[9],
                            extraction_folders[var])
-
         path, dirs, files = next(os.walk(extraction_folders[var]))
         extract_train_img_count = len(files)
         trainAndExecute(extraction_folders[var],
@@ -82,7 +81,6 @@ def execute_template_method(train_set_items, test_set_items):
         test_path = ''
     else:
         test_path = test_set_items[7]
-    '''
+
     evaluate_distinct_data_performance(train_set_items[0], train_set_items[7], test_path,
                                        train_set_items[13], train_set_items[11])
-'''
