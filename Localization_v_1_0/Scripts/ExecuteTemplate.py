@@ -6,6 +6,7 @@ from Localization_v_1_0.Scripts.executeTestSet import execute
 from Localization_v_1_0.Scripts.extractMarkerViews import extractMarkerViews
 from Localization_v_1_0.Scripts.run_train_test_detections import call_create_cvs
 from Localization_v_1_0.Scripts.trainAndExecuteNetwork import trainAndExecute
+from Localization_v_1_0.Scripts.scaleSFAFilesize import scaleFile
 
 
 def execute_template_method(train_set_items, test_set_items):
@@ -82,5 +83,11 @@ def execute_template_method(train_set_items, test_set_items):
     else:
         test_path = test_set_items[7]
 
+    for j in range(len(train_set_items[13])):
+        scaleFile(train_set_items[0], train_set_items[7], test_path,
+                  aruco_array[j], train_set_items[11])
+
+    '''
     evaluate_distinct_data_performance(train_set_items[0], train_set_items[7], test_path,
                                        train_set_items[13], train_set_items[11])
+    '''

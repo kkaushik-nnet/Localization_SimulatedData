@@ -92,8 +92,8 @@ def evaluate_distinct_data_performance(outputPath, trainSetCoordsPath, testSetCo
         print("\nMean Absolute Error: %f [m]\n" % MAE)
         # Visualize
         ######################################################
-        ax.plot(testCoords[:, 0], testCoords[:, 1], 'b--', lw=1, label='Ground truth')
-        ax.plot(prediction_X, prediction_Y, 'r--', lw=1, label='Estimation')
+        ax.plot(testCoords[:, 0], testCoords[:, 1], 'b.', lw=1, label='Ground truth')
+        ax.plot(prediction_X, prediction_Y, 'r.', lw=1, label='Estimation')
 
     else:
         polyFeatureTrainingSet = polyRegressor.fit_transform(trainSet)
@@ -118,8 +118,8 @@ def evaluate_distinct_data_performance(outputPath, trainSetCoordsPath, testSetCo
         MAE = mean_absolute_error(y_test, predictedCoordinates)
         print("\nMean Absolute Error: %f [m]\n" % MAE)
 
-        ax.plot(y_test[:, 0], y_test[:, 1], 'b--', lw=1, label='Ground truth')
-        ax.plot(prediction_X, prediction_Y, 'r--', lw=1, label='Estimation')
+        ax.plot(y_test[:, 0], y_test[:, 1], 'b.', lw=1, label='Ground truth')
+        ax.plot(prediction_X, prediction_Y, 'r.', lw=1, label='Estimation')
 
     plt.title('Mean Absolute Error: ' + "{:.2f}".format(MAE), fontweight='bold')
     legend = ax.legend(loc='lower right', shadow=True)

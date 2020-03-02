@@ -44,40 +44,40 @@ def extractMarkerViews(markerId, imageFileName, imagePath, imageSuffix
             # img = cv2.imread(imagePath + str(i) + imageSuffix, 0)
             img = cv2.imread(detection_results[['image']].values[i][0], 0)
 
-        points = np.zeros((4, 2))
-        points[0] = marker_squares[i, 0:2]
-        points[1] = marker_squares[i, 2:4]
-        points[2] = marker_squares[i, 4:6]
-        points[3] = marker_squares[i, 6:8]
+            points = np.zeros((4, 2))
+            points[0] = marker_squares[i, 0:2]
+            points[1] = marker_squares[i, 2:4]
+            points[2] = marker_squares[i, 4:6]
+            points[3] = marker_squares[i, 6:8]
 
-        # print(points)
-        # print('')
+            # print(points)
+            # print('')
 
-        cx = int(points[:, 0].mean() + 0.5)
-        cy = int(points[:, 1].mean() + 0.5)
+            cx = int(points[:, 0].mean() + 0.5)
+            cy = int(points[:, 1].mean() + 0.5)
 
-        side = (math.sqrt((points[2][0] - points[3][0]) ** 2 + (points[2][1] - points[3][1]) ** 2))
+            side = (math.sqrt((points[2][0] - points[3][0]) ** 2 + (points[2][1] - points[3][1]) ** 2))
 
-        # print("cx: %d, cy: %d" % (cx, cy))
-        # print("points[2][0] %d, points[2][1] %d" % (points[2][0], points[2][1]))
-        # print("Width : %d" % (math.sqrt((points[2][0] - points[3][0]) ** 2 + (points[2][1] - points[3][1]) ** 2)))
-        img = align_view(img, np.array([cx, cy]), np.array([1440, 1440]))
+            # print("cx: %d, cy: %d" % (cx, cy))
+            # print("points[2][0] %d, points[2][1] %d" % (points[2][0], points[2][1]))
+            # print("Width : %d" % (math.sqrt((points[2][0] - points[3][0]) ** 2 + (points[2][1] - points[3][1]) ** 2)))
+            img = align_view(img, np.array([cx, cy]), np.array([1440, 1440]))
 
-        marker = img[int(cy - 10 + side / 2):int(cy + 10 + 3 * side / 2),
-                 int(cx - 10 - side / 2):int(cx + 10 + side / 2)]
-        # marker = img[int(cy - 10 - side / 2):int(cy + 10 + side/2 ) , int(cx - 10 - 3*side / 2 ):int(cx - 10 - side
-        # / 2 )]
+            marker = img[int(cy - 10 + side / 2):int(cy + 10 + 3 * side / 2),
+                     int(cx - 10 - side / 2):int(cx + 10 + side / 2)]
+            # marker = img[int(cy - 10 - side / 2):int(cy + 10 + side/2 ) , int(cx - 10 - 3*side / 2 ):int(cx - 10 -
+            # side / 2 )]
 
-        # Display the extracted image?
-        # temp = cv2.resize(img, (1000,1000))
-        # cv2.imshow('marker', temp)
-        # if cv2.waitKey() & 255 == 27:
-        # break
+            # Display the extracted image?
+            # temp = cv2.resize(img, (1000,1000))
+            # cv2.imshow('marker', temp)
+            # if cv2.waitKey() & 255 == 27:
+            # break
 
-        if marker.shape[0] != 0 and marker.shape[1] != 0:
-            marker = cv2.resize(marker, (120, 120))
-            cv2.imwrite(savePath + str(counter) + imageSuffix, marker)
-            counter += 1
+            if marker.shape[0] != 0 and marker.shape[1] != 0:
+                marker = cv2.resize(marker, (120, 120))
+                cv2.imwrite(savePath + str(counter) + imageSuffix, marker)
+                counter += 1
 
 
 if __name__ == "__main__":
