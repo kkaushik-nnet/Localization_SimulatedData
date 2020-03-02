@@ -1,4 +1,3 @@
-# from past.builtins import raw_input
 from twisted.python.compat import raw_input
 
 array_global = []

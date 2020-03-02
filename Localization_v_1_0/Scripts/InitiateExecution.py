@@ -84,17 +84,12 @@ def create_folder_structure(aruco_marker_array):
         current_working_folder = folder_path + time_string
         os.makedirs(current_working_folder)
         os.makedirs(current_working_folder + '/Training_Data')
-        # os.makedirs(current_working_folder + '/Extracted_Train_Data')
-        # os.makedirs(current_working_folder + '/Extracted_Test_Data')
 
-        # print("---" + current_working_folder)
         directory_items.append(current_working_folder)
         detection_build_utils = os.getcwd().replace('Scripts', 'MarkerDetection/build/utils/')
         directory_items.append(detection_build_utils)
         training_folder = current_working_folder + '/Training_Data/'
         directory_items.append(training_folder)
-        # training_extract = current_working_folder + '/Extracted_Train_Data/'
-        # directory_items.append(training_extract)
         run_train_detection = os.getcwd() + '/run_train_detection.sh'
         directory_items.append(run_train_detection)
         train_xml = current_working_folder + '/trainList.xml'
@@ -106,8 +101,6 @@ def create_folder_structure(aruco_marker_array):
             os.makedirs(current_working_folder + '/Testing_Data')
             testing_folder = current_working_folder + '/Testing_Data/'
             directory_items.append(testing_folder)
-            # testing_extract = current_working_folder + '/Extracted_Test_Data/'
-            # directory_items.append(testing_extract)
             run_test_detection = os.getcwd() + '/run_test_detection.sh'
             directory_items.append(run_test_detection)
             test_xml = current_working_folder + '/testList.xml'
