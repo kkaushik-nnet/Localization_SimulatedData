@@ -42,9 +42,9 @@ def trainAndExecute(imageSource, saveFileAt, imgCount, imgSuffix, modelName, m_i
     executeData = dataGenerator(1, imgCount, imageSource, imgSuffix)
     slowFeatures = flow.execute(executeData)
 
-    pickle.dump(flow, open(saveFileAt + '/' + modelName + '_' + m_id + '.sav', 'wb'))
-    print('npy file is at : ' + saveFileAt + '/' + modelName + '_' + m_id + '_slowFeatures.npy')
-    np.save(saveFileAt + '/' + modelName + '_' + m_id + '_slowFeatures.npy', slowFeatures)
+    pickle.dump(flow, open(saveFileAt + '/Evaluation_Arrays/' + modelName + '_' + m_id + '.sav', 'wb'))
+    print('npy file is at : ' + saveFileAt + '/Evaluation_Arrays/' + modelName + '_' + m_id + '_slowFeatures.npy')
+    np.save(saveFileAt + '/Evaluation_Arrays/' + modelName + '_' + m_id + '_slowFeatures.npy', slowFeatures)
 
 
 if __name__ == "__main__":

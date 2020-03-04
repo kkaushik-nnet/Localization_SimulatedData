@@ -83,6 +83,7 @@ def create_folder_structure(aruco_marker_array):
     if not os.path.exists(folder_path + time_string):
         current_working_folder = folder_path + time_string
         os.makedirs(current_working_folder)
+        os.makedirs(current_working_folder + '/Evaluation_Arrays')
         os.makedirs(current_working_folder + '/Training_Data')
 
         directory_items.append(current_working_folder)

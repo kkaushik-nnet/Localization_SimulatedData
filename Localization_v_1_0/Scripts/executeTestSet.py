@@ -29,9 +29,9 @@ class dataGenerator:
 # ===========================================
 def execute(imageSource,saveFileAt, imgCount, imgSuffix, modelName,m_id):
     executeData = dataGenerator(1, imgCount, imageSource, imgSuffix)
-    flow = pickle.load(open(saveFileAt + '/' + modelName + '_' + str(m_id) + '.sav', 'rb'))
+    flow = pickle.load(open(saveFileAt + '/Evaluation_Arrays/' + modelName + '_' + str(m_id) + '.sav', 'rb'))
     slowFeatures = flow.execute(executeData)
-    np.save(saveFileAt + '/test_' + str(m_id) + '_slowFeatures.npy', slowFeatures)
+    np.save(saveFileAt + '/Evaluation_Arrays/test_' + str(m_id) + '_slowFeatures.npy', slowFeatures)
 
 
 if __name__ == "__main__":
