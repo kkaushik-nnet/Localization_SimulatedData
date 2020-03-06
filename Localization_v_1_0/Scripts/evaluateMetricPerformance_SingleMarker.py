@@ -11,17 +11,18 @@ testSet = []
 testCoords = []
 
 
-def evaluate_distinct_data_performance(outputPath, trainSetCoordsPath, testSetCoordsPath, aruco, train_test_data):
+def evaluate_individual_performances(outputPath, trainSetCoordsPath, testSetCoordsPath, aruco, train_test_data):
 
     global testSet, testCoords
-
-    m_id = str(aruco[0])
+    # aruco = np.array(aruco)
+    # m_id = str(aruco[0])
+    m_id = aruco
     # Regression Degree
     DEG = 2
 
     # Train Set
     # Slow Feature Values
-    trainSetPath = outputPath + '/' + 'train_'+m_id+'_slowFeatures.npy'
+    trainSetPath = outputPath + '/Evaluation_Arrays/' + 'train_'+m_id+'_slowFeatures.npy'
 
     # Marker detection results
     detectionResultsTrainSetPath = outputPath + '/' + 'result_train.csv'
@@ -29,6 +30,7 @@ def evaluate_distinct_data_performance(outputPath, trainSetCoordsPath, testSetCo
     # Load Files
     trainSet = np.load(trainSetPath)
     trainSetCoords = np.loadtxt(trainSetCoordsPath, delimiter=',', usecols=(4, 5))
+    # trainSetCoords = np.loadtxt(trainSetCoordsPath)[:, 0:2]
     detectionResultsTrainSet = pd.read_csv(detectionResultsTrainSetPath)
 
     markerSquaresTrainSet = detectionResultsTrainSet[
@@ -48,10 +50,11 @@ def evaluate_distinct_data_performance(outputPath, trainSetCoordsPath, testSetCo
 
     # Test set
     if train_test_data:
-        testSetPath = outputPath + '/' + 'test_'+m_id+'_slowFeatures.npy'
+        testSetPath = outputPath + '/Evaluation_Arrays/' + 'test_'+m_id+'_slowFeatures.npy'
         detectionResultsTestSetPath = outputPath + '/' + 'result_test.csv'
         testSet = np.load(testSetPath)
         testSetCoords = np.loadtxt(testSetCoordsPath, delimiter=',', usecols=(4, 5))
+        # testSetCoords = np.loadtxt(testSetCoordsPath)[:, 0:2]
         detectionResultsTestSet = pd.read_csv(detectionResultsTestSetPath)
         markerSquaresTestSet = detectionResultsTestSet[
             [m_id + '_bb_x1', m_id + '_bb_y1', m_id + '_bb_x2', m_id + '_bb_y2', m_id + '_bb_x3', m_id + '_bb_y3',
@@ -130,7 +133,7 @@ def evaluate_distinct_data_performance(outputPath, trainSetCoordsPath, testSetCo
     plt.rc('legend', **{'fontsize': 8})
     plt.gca().set_aspect('equal', adjustable='box')
     plt.tick_params(labelsize=12)
-    plt.savefig(outputPath + '/' + 'single_marker_result.pdf', dpi=1200, bbox_inches='tight')  # Save?
+    plt.savefig(outputPath + '/' + 'marker_'+m_id+'_result.pdf', dpi=1200, bbox_inches='tight')  # Save?
     plt.show()
 
 
@@ -143,4 +146,4 @@ if __name__ == "__main__":
         print("     Model Name          # Trained model name")
         print("\nExample: python executeTestSet.py images/ 1600 .png train\n")
         sys.exit()
-    evaluate_distinct_data_performance(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5])
+    evaluate_individual_performances(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5])

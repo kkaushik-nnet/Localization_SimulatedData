@@ -217,4 +217,5 @@ if __name__ == "__main__":
     if is_train_test_data_distinct:
         execute_template_method(train_set_items, test_set_items)
     else:
+
         execute_template_method(train_set_items, [])

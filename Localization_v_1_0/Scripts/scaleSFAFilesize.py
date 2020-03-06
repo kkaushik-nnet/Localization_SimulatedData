@@ -16,7 +16,7 @@ def scaleFile(outputPath, trainSetCoordsPath, testSetCoordsPath, aruco, train_te
     trainSet = np.load(trainSetPath)
 
     trainSetCoords = np.loadtxt(trainSetCoordsPath, delimiter=',', usecols=(4, 5))
-
+    # trainSetCoords = np.loadtxt(trainSetCoordsPath)[:, 0:2]
     detectionResultsTrainSet = pd.read_csv(detectionResultsTrainSetPath)
 
     markerSquaresTrainSet = detectionResultsTrainSet[
@@ -43,6 +43,7 @@ def scaleFile(outputPath, trainSetCoordsPath, testSetCoordsPath, aruco, train_te
         detectionResultsTestSetPath = outputPath + '/' + 'result_test.csv'
         testSet = np.load(testSetPath)
         testSetCoords = np.loadtxt(testSetCoordsPath, delimiter=',', usecols=(4, 5))
+        # testSetCoords = np.loadtxt(testSetCoordsPath)[:, 0:2]
         detectionResultsTestSet = pd.read_csv(detectionResultsTestSetPath)
         markerSquaresTestSet = detectionResultsTestSet[
             [m_id + '_bb_x1', m_id + '_bb_y1', m_id + '_bb_x2', m_id + '_bb_y2', m_id + '_bb_x3', m_id + '_bb_y3',
@@ -54,6 +55,9 @@ def scaleFile(outputPath, trainSetCoordsPath, testSetCoordsPath, aruco, train_te
             if detectionResultsTestSet.iloc[i, 1:].sum() != 0:
                 if markerSquaresTestSet[i].sum() == 0:
                     testSet = np.insert(testSet, n, np.zeros((1, 8)), 0)
+                    testCoords.append(0)
+                else:
+                    testCoords.append(1)
                 n = n + 1
         testCoords = np.array([testCoords])
         np.save(outputPath+'/Evaluation_Arrays/data_' + m_id+'_test', testSet)

@@ -9,6 +9,7 @@ import pandas as pd
 def detection_plot(outputPath,trainSetCoordsPath,detectionResultsTrainSetPath,m_id,var_type):
 
     trainSetCoords = np.loadtxt(trainSetCoordsPath, delimiter=',', usecols=(4, 5))
+    # trainSetCoords = np.loadtxt(trainSetCoordsPath)[:, 0:2]
 
     detectionResultsTrainSet = pd.read_csv(detectionResultsTrainSetPath)
     markerSquaresTrainSet = detectionResultsTrainSet[
@@ -37,12 +38,12 @@ def detection_plot(outputPath,trainSetCoordsPath,detectionResultsTrainSetPath,m_
 
     print("Train Set: (%d,%d) " % trainCoords.shape)
 
-    percent = str(round(100 * len(unDetectedCoords) / len(trainCoords), 2))
+    percent = str(round(100 * len(unDetectedCoords) / (len(trainCoords)+len(unDetectedCoords)), 2))
     ## Visualize
     ######################################################
     fig, ax = plt.subplots()
 
-    ax.plot(trainCoords[:, 0], trainCoords[:, 1], 'b-', lw=1, label='Ground truth')
+    ax.plot(trainCoords[:, 0], trainCoords[:, 1], 'b.', lw=1, label='Ground truth')
     if len(unDetectedCoords) == 0:
         print("All coordinates detected")
     else:
