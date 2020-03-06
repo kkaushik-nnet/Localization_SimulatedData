@@ -1,0 +1,164 @@
+Train set
+python createImageList.py '/hri/localdisk/ThesisProject/Kaushik/Kaushik/05.02.2020_All/savedImages/' '/hri/localdisk/ThesisProject/Kaushik/Version_1_5/Landmark_based_localization/Output/trainList.xml' '.jpg'
+
+sh ./run_train_detection.sh
+
+python extractMarkerViews_2_markers.py 136 72 /hri/localdisk/ThesisProject/Kaushik/Version_1_5/Landmark_based_localization/Output/result_train.csv /hri/localdisk/ThesisProject/Kaushik/Kaushik/05.02.2020_All/recordingKaushik05/WP_0_Images/ .jpg 2110 /hri/localdisk/ThesisProject/Kaushik/Kaushik/05.02.2020_All/recordingKaushik05/Extracted_train/
+
+
+Test set
+python createImageList.py '/hri/localdisk/ThesisProject/Kaushik/Kaushik/03.02.2020_All/testSet/' '/hri/localdisk/ThesisProject/Kaushik/Version_1_5/Landmark_based_localization/Output/testList.xml' '.jpg'
+
+sh ./run_test_detection.sh
+
+python extractMarkerViews_2_markers.py 136 72 /hri/localdisk/ThesisProject/Kaushik/Version_1_5/Landmark_based_localization/Output/result_test.csv /hri/localdisk/ThesisProject/Kaushik/Kaushik/03.02.2020_All/testSet/ .jpg 2706 /hri/localdisk/ThesisProject/Kaushik/Kaushik/03.02.2020_All/test_Extracted/
+
+
+
+python trainAndExecuteNetwork.py /hri/localdisk/ThesisProject/Kaushik/Kaushik/03.02.2020_All/train_Extracted/ 763 .jpg 'train'
+
+python executeTestSet.py /hri/localdisk/ThesisProject/Kaushik/Kaushik/03.02.2020_All/test_Extracted/ 707 .jpg train
+
+evaluateMetricPerformance_DoubleMarker.py
+
+
+
+----------------------------------------------------------
+
+Train set
+python createImageList.py '/hri/localdisk/ThesisProject/Kaushik/Kaushik/Experiment_10/Training_Images/Path_1/' '/hri/localdisk/ThesisProject/Kaushik/Version_1_6_1/Landmark_based_localization/Output/trainList.xml' '.jpg'
+
+sh ./run_train_detection.sh
+
+python extractMarkerViews.py 160 '/hri/localdisk/ThesisProject/Kaushik/Version_1_6_1/Landmark_based_localization/Output/result_train.csv' '/hri/localdisk/ThesisProject/Kaushik/Kaushik/Experiment_10/Training_Images/Path_1/' '.jpg' 1410 '/hri/localdisk/ThesisProject/Kaushik/Kaushik/Experiment_10/Training_Images/Path_1_Extracted/'
+
+
+
+Test set
+python createImageList.py '/hri/localdisk/ThesisProject/Kaushik/Kaushik/Experiment_8/WP_1_Images/' '/hri/localdisk/ThesisProject/Kaushik/Version_1_5.1/Landmark_based_localization/Output/testList.xml' '.jpg'
+
+sh ./run_test_detection.sh
+
+python extractMarkerViews_2_markers.py 160 72 /hri/localdisk/ThesisProject/Kaushik/Version_1_5.1/Landmark_based_localization/Output/result_test.csv /hri/localdisk/ThesisProject/Kaushik/Kaushik/Experiment_8/WP_1_Images/ .jpg 882 /hri/localdisk/ThesisProject/Kaushik/Kaushik/Experiment_8/Extracted_Test/
+
+
+
+python trainAndExecuteNetwork.py /hri/localdisk/ThesisProject/Kaushik/Kaushik/Experiment_9_1202/Non_Repeted_Extracted/ 1260 .jpg 'train'
+
+python executeTestSet.py /hri/localdisk/ThesisProject/Kaushik/Kaushik/Experiment_8/Extracted_Test/ 335 .jpg 'train'
+
+python evaluateMetricPerformance_DoubleMarker.py
+
+python evaluateMetricPerformance_TrainTestSplit.py
+
+
+markerId= 160
+imageFileName= '/hri/localdisk/ThesisProject/Kaushik/Version_1_5.1/Landmark_based_localization/Output/result_train.csv' 
+imagePath= '/hri/localdisk/ThesisProject/Kaushik/Kaushik/Experiment_9_1202/Non_Repeted_Coordinates/' 
+imageSuffix = '.jpg'
+numImages = 1410 
+savePath = '/hri/localdisk/ThesisProject/Kaushik/Kaushik/Experiment_9_1202/Non_Repeted_Extracted/' 
+extractedImageWidth=120
+extractedImageHeight=120
+
+
+
+How Many files are there in a folder ?
+
+import os
+path, dirs, files = next(os.walk("/usr/lib"))
+file_count = len(files)
+
+
+
+
+Train set
+python createImageList.py '/hri/localdisk/ThesisProject/Kaushik/Kaushik/Experiment_9_1202/OuterPath_afterWindow/' '/hri/localdisk/ThesisProject/Kaushik/Version_1_6/Landmark_based_localization/Output/trainList.xml' '.jpg'
+
+sh ./run_train_detection.sh
+
+python extractMarkerViews.py 160 /hri/localdisk/ThesisProject/Kaushik/Version_1_6/Landmark_based_localization/Output/result_train.csv /hri/localdisk/ThesisProject/Kaushik/Kaushik/Experiment_9_1202/OuterPath_afterWindow/ .jpg 622 /hri/localdisk/ThesisProject/Kaushik/Kaushik/Experiment_9_1202/OuterPath_afterWindow_Extracted/
+
+python trainAndExecuteNetwork.py /hri/localdisk/ThesisProject/Kaushik/Kaushik/Experiment_9_1202/OuterPath_Extracted/ 698 .jpg 'train'
+
+python evaluateMetricPerformance_TrainTestSplit.py
+
+
+
+
+
+#!/bin/bash
+Path_TO_EXECUTABLE="/hri/localdisk/ThesisProject/Kaushik/Version_1_6_1/Landmark_based_localization/MarkerDetection/build/utils/"
+Image_NAME_List_Path="/hri/localdisk/ThesisProject/Kaushik/Version_1_6_1/Landmark_based_localization/Output/trainList.xml"
+Output_Path="/hri/localdisk/ThesisProject/Kaushik/Version_1_6_1/Landmark_based_localization/Output/result_train.csv"
+Intrinsics_File_Path="/hri/localdisk/ThesisProject/Kaushik/Simulator_data/intrinsics_2880x2880.yml"
+Marker_ID=[160]
+Marker_Size=1.
+Is_Omni=1
+Debug=0
+
+
+
+
+#!/bin/bash
+Path_TO_EXECUTABLE=$1
+Image_NAME_List_Path=$2
+Output_Path=$3
+Intrinsics_File_Path="/hri/localdisk/ThesisProject/Kaushik/Simulator_data/intrinsics_2880x2880.yml"
+Marker_ID=[$4]
+Marker_Size=1.
+Is_Omni=1
+Debug=0
+
+cd $Path_TO_EXECUTABLE
+./detect_markers $Image_NAME_List_Path $Output_Path $Intrinsics_File_Path $Marker_ID $Marker_Size $Is_Omni $Debug
+
+
+
+'''
+#!/bin/bash
+Path_TO_EXECUTABLE="/hri/localdisk/ThesisProject/Kaushik/Version_1_6_1/Landmark_based_localization/MarkerDetection/build/utils/"
+Image_NAME_List_Path="/hri/localdisk/ThesisProject/Kaushik/Version_1_6_1/Landmark_based_localization/Output/trainList.xml"
+Output_Path=$1
+Intrinsics_File_Path="/hri/localdisk/ThesisProject/Kaushik/Simulator_data/intrinsics_2880x2880.yml"
+Marker_ID=[160]
+Marker_Size=1.
+Is_Omni=1
+Debug=0
+
+#echo $Output_Path $Path_TO_EXECUTABLE $Image_NAME_List_Path
+cd $Path_TO_EXECUTABLE
+./detect_markers $Image_NAME_List_Path $Output_Path $Intrinsics_File_Path $Marker_ID $Marker_Size $Is_Omni $Debug
+'''
+
+
+conda install -c anaconda pywin32
+
+
+from past.builtins import raw_input
+
+
+def enter_array():
+    num_array = list()
+    num = raw_input("Enter how many elements you want:")
+    y = int(num)
+    print('Enter numbers in array: ')
+
+    for i in range(int(y)):
+        var = raw_input("num :")
+        if var == '':
+            print('Please enter a valid numbers again..!')
+            del num_array
+            re_enter_array()
+        else:
+            n = var
+            num_array.append(int(n))
+        print(num_array)
+
+
+def re_enter_array():
+    enter_array()
+
+
+if __name__ == "__main__":
+    enter_array()
