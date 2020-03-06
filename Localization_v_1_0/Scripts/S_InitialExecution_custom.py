@@ -7,11 +7,11 @@ from tkinter import filedialog
 
 from Localization_v_1_0.Scripts.Aruco_Marker_Input import enter_array
 from Localization_v_1_0.Scripts.BuildCPPFiles import buildCPP
-from Localization_v_1_0.Scripts.CopyImagesFromSrc import copyUniqueImages
-from Localization_v_1_0.Scripts.Execute_Template_test import execute_template_method
+from Localization_v_1_0.Scripts.S_CopyImagesFromSrc import copyUniqueImages
+from Localization_v_1_0.Scripts.S_Execute_Template_test import execute_template_method
 
 folder_path = '/hri/localdisk/ThesisProject/Kaushik/Kaushik/Testing_Sample_Script/'
-image_format = '.jpg'
+image_format = '.png'
 train_the_data = 'train'
 test_the_data = 'test'
 source_path_train = ''
@@ -50,13 +50,14 @@ def m_folder():
 def m_folder_open_train():
     global source_path_train
     source_path_train = filedialog.askdirectory(
-        initialdir="/hri/localdisk/ThesisProject/Kaushik/Kaushik/Experiment_10_2/Training_Images/Path_1/",
+        initialdir="/hri/localdisk/ThesisProject/Kaushik/Simulator_data/TwoMarkers/train/",
         title="Select Training Images")
     source_path_train = source_path_train + '/'
 
     global source_co_ord_path_train
 
-    source_co_ord_path_train = filedialog.askopenfilename(initialdir="/hri/localdisk/ThesisProject/Kaushik/Kaushik/Experiment_10_2/Training_Images/",
+    source_co_ord_path_train = filedialog.askopenfilename(initialdir="/hri/localdisk/ThesisProject/Kaushik"
+                                                                     "/Simulator_data/Coordinates/Train_Cords/",
                                                           filetypes=(("Text File", "*.txt"), ("All Files", "*.*")),
                                                           title="Choose a file."
                                                           )
@@ -65,13 +66,14 @@ def m_folder_open_train():
 def m_folder_open_test():
     global source_path_test
     source_path_test = filedialog.askdirectory(
-        initialdir="/hri/localdisk/ThesisProject/Kaushik/Kaushik/Experiment_10_2/Testing_Images/Path_1/",
+        initialdir="/hri/localdisk/ThesisProject/Kaushik/Simulator_data/TwoMarkers/test/",
         title="Select Testing Images")
     source_path_test = source_path_test + '/'
 
     global source_co_ord_path_test
 
-    source_co_ord_path_test = filedialog.askopenfilename(initialdir="/hri/localdisk/ThesisProject/Kaushik/Kaushik/Experiment_10_2/Testing_Images/",
+    source_co_ord_path_test = filedialog.askopenfilename(initialdir="/hri/localdisk/ThesisProject/Kaushik"
+                                                                    "/Simulator_data/Coordinates/Test_Cords/",
                                                          filetypes=(("Text File", "*.txt"), ("All Files", "*.*")),
                                                          title="Choose a file."
                                                          )

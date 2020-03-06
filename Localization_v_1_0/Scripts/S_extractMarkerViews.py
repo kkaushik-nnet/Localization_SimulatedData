@@ -39,10 +39,11 @@ def extractMarkerViews(markerId, imageFileName, imagePath, imageSuffix
     counter = 0
     for i in tqdm(range(numImages)):
         # print(i)
+
         if marker_squares[i].sum() != 0:
-            # img = cv2.imread(imagePath + str(i) + imageSuffix, 0)
-            print("Image_path : " + imagePath + str(i) + imageSuffix)
-            img = cv2.imread(detection_results[['image']].values[i][0], 0)
+            img = cv2.imread(imagePath + str(i) + imageSuffix, 0)
+            # print("Image_path : " + imagePath + str(i) + imageSuffix)
+            # img = cv2.imread(detection_results[['image']].values[i][0], 0)
 
             points = np.zeros((4, 2))
             points[0] = marker_squares[i, 0:2]
@@ -62,22 +63,12 @@ def extractMarkerViews(markerId, imageFileName, imagePath, imageSuffix
             # print("points[2][0] %d, points[2][1] %d" % (points[2][0], points[2][1]))
             # print("Width : %d" % (math.sqrt((points[2][0] - points[3][0]) ** 2 + (points[2][1] - points[3][1]) ** 2)))
 
-            img = align_view(img, np.array([cx, cy]), np.array([1440, 1440]))
-
-            marker = img[int(cy - 10 + side / 2):int(cy + 10 + 3 * side / 2),
-                            int(cx - 10 - side / 2):int(cx + 10 + side / 2)]
-            '''
-            marker = img[int(cy - 10 + h / 2):int(cy + 10 + 3 * h / 2),
-                            int(cx - 10 - w / 2):int(cx + 10 + w / 2)]
-                            '''
             # marker = img[int(cy - 10 - side / 2):int(cy + 10 + side/2 ) , int(cx - 10 - 3*side / 2 ):int(cx - 10 -
             # side / 2 )]
 
-            '''
             img = align_view(img, np.array([cx, cy]), np.array([512, 512]))
-            marker = img[int(cy - h / 2):int(cy + h / 2), int(cx - w / 2):int(cx + w / 2)]
-            '''
-
+            # marker = img[int(cy - h / 2):int(cy + h / 2), int(cx - w / 2):int(cx + w / 2)]
+            marker = img[int(cy - side / 2):int(cy + side / 2), int(cx - side / 2):int(cx + side / 2)]
             if marker.shape[0] != 0 and marker.shape[1] != 0:
                 marker = cv2.resize(marker, (120, 120))
                 cv2.imwrite(savePath + str(counter) + imageSuffix, marker)

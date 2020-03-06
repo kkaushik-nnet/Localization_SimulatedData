@@ -1,18 +1,17 @@
 import os
-from Localization_v_1_0.Scripts.DetectionPlot import detection_plot
+from Localization_v_1_0.Scripts.S_DetectionPlot import detection_plot
 from Localization_v_1_0.Scripts.createImageList import create_image_list
-from Localization_v_1_0.Scripts.evaluateMetricPerformance_SingleMarker import evaluate_individual_performances
-from Localization_v_1_0.Scripts.evaluateMetricPerformance import evaluate_distinct_data_performance
+from Localization_v_1_0.Scripts.S_evaluateMetricPerformance_SingleMarker import evaluate_individual_performances
+from Localization_v_1_0.Scripts.S_evaluateMetricPerformance import evaluate_distinct_data_performance
 from Localization_v_1_0.Scripts.executeTestSet import execute
-from Localization_v_1_0.Scripts.extractMarkerViews import extractMarkerViews
+from Localization_v_1_0.Scripts.S_extractMarkerViews import extractMarkerViews
 from Localization_v_1_0.Scripts.run_train_test_detections import call_create_cvs
 from Localization_v_1_0.Scripts.trainAndExecuteNetwork import trainAndExecute
-from Localization_v_1_0.Scripts.scaleSFAFilesize import scaleFile
-
+from Localization_v_1_0.Scripts.S_scaleSFAFilesize import scaleFile
 test_path = ''
 
 
-def execute_template_method(train_set_items, test_set_items, level):
+def execute_template_method(train_set_items, test_set_items,level):
     global test_path
     aruco_array = train_set_items[-1]
     extraction_folders = train_set_items[12]
@@ -29,6 +28,7 @@ def execute_template_method(train_set_items, test_set_items, level):
                         train_set_items[4],
                         train_set_items[5],
                         aruco_array)
+
     if train_set_items[11]:
         if stage > 6:
             create_image_list(test_set_items[2],
@@ -98,15 +98,12 @@ def execute_template_method(train_set_items, test_set_items, level):
 
     if stage > 2:
         for j in range(len(train_set_items[13])):
-            if len(train_set_items[13]) > 1:
-                scaleFile(train_set_items[0], train_set_items[7], test_path,
-                          aruco_array[j], train_set_items[11])
-
+            scaleFile(train_set_items[0], train_set_items[7], test_path,
+                      aruco_array[j], train_set_items[11])
             evaluate_individual_performances(train_set_items[0], train_set_items[7], test_path,
                                              aruco_array[j], train_set_items[11])
 
     if stage > 1:
-        if len(train_set_items[13]) > 1:
-            evaluate_distinct_data_performance(train_set_items[0], train_set_items[7], test_path,
-                                               train_set_items[13], train_set_items[11])
+        evaluate_distinct_data_performance(train_set_items[0], train_set_items[7], test_path,
+                                           train_set_items[13], train_set_items[11])
 
