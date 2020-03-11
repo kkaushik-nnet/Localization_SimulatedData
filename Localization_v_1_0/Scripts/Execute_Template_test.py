@@ -55,6 +55,7 @@ def execute_template_method(train_set_items, test_set_items, level):
                            train_set_items[5],
                            aruco_array[var],
                            'Train')
+
         if stage > 3:
             path, dirs, files = next(os.walk(extraction_folders[var]))
             extract_train_img_count = len(files)
@@ -81,6 +82,7 @@ def execute_template_method(train_set_items, test_set_items, level):
                                test_set_items[5],
                                aruco_array[var],
                                'Test')
+
             if stage > 3:
                 path, dirs, files = next(os.walk(extraction_folders[num_of_aruco + var]))
                 extract_test_img_count = len(files)
@@ -98,14 +100,14 @@ def execute_template_method(train_set_items, test_set_items, level):
 
     if stage > 2:
         for j in range(len(train_set_items[13])):
-            if len(train_set_items[13]) > 1:
-                scaleFile(train_set_items[0], train_set_items[7], test_path,
-                          aruco_array[j], train_set_items[11])
-
             evaluate_individual_performances(train_set_items[0], train_set_items[7], test_path,
                                              aruco_array[j], train_set_items[11])
 
     if stage > 1:
+        for j in range(len(train_set_items[13])):
+            if len(train_set_items[13]) > 1:
+                scaleFile(train_set_items[0], train_set_items[7], test_path,
+                          aruco_array[j], train_set_items[11])
         if len(train_set_items[13]) > 1:
             evaluate_distinct_data_performance(train_set_items[0], train_set_items[7], test_path,
                                                train_set_items[13], train_set_items[11])

@@ -32,11 +32,11 @@ def detection_plot(outputPath,trainSetCoordsPath,detectionResultsTrainSetPath,m_
     # testCoords = np.array(testCoords)
 
     print("\nActual coordinates\n ")
-    print("Train Set: (%d,%d) " % trainSetCoords.shape)
+    print("Train Set: ", trainSetCoords.shape)
 
     print("\nAfter removing coordinates with no marker detection\n ")
 
-    print("Train Set: (%d,%d) " % trainCoords.shape)
+    print("Train Set: ", trainCoords.shape)
 
     percent = str(round(100 * len(unDetectedCoords) / (len(trainCoords)+len(unDetectedCoords)), 2))
     ## Visualize

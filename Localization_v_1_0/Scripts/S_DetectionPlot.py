@@ -5,6 +5,16 @@ from sklearn.linear_model import LinearRegression
 import seaborn as sns
 import pandas as pd
 
+'''
+outputPath = '/hri/localdisk/ThesisProject/Kaushik/Kaushik/Testing_Sample_Script/04032020-171216/'
+trainSetCoordsPath = '/hri/localdisk/ThesisProject/Kaushik/Kaushik/Testing_Sample_Script/04032020-171216//coordinates_train.txt'
+testSetCoordsPath = '/hri/localdisk/ThesisProject/Kaushik/Kaushik/Testing_Sample_Script/04032020-171216//coordinates_test.txt'
+aruco = [160]
+m_id = str(aruco[0])
+train_test_data = True
+detectionResultsTrainSetPath = '/hri/localdisk/ThesisProject/Kaushik/Kaushik/Testing_Sample_Script/04032020-171216/result_train.csv' 
+'''
+
 
 def detection_plot(outputPath,trainSetCoordsPath,detectionResultsTrainSetPath,m_id,var_type):
 

@@ -31,7 +31,7 @@ source_path = ''
 def m_folder():
     global source_path
     source_path = filedialog.askdirectory(
-        initialdir="/hri/localdisk/ThesisProject/Kaushik/Kaushik/Testing_Sample_Script/05032020-153713/",
+        initialdir="/hri/localdisk/ThesisProject/Kaushik/Kaushik/Testing_Sample_Script/",
         title="Select Source Path")
     source_path = source_path + '/'
 # "/hri/localdisk/ThesisProject/Kaushik/Kaushik/Experiment_10_2/Training_Images/Path_1/"
@@ -50,13 +50,13 @@ def m_folder():
 def m_folder_open_train():
     global source_path_train
     source_path_train = filedialog.askdirectory(
-        initialdir="/hri/localdisk/ThesisProject/Kaushik/Kaushik/Experiment_10_2/Training_Images/Path_1/",
+        initialdir="/hri/localdisk/ThesisProject/Kaushik/Kaushik/Outdoor_exp_1/train/Kodak/sub0/",
         title="Select Training Images")
     source_path_train = source_path_train + '/'
 
     global source_co_ord_path_train
 
-    source_co_ord_path_train = filedialog.askopenfilename(initialdir="/hri/localdisk/ThesisProject/Kaushik/Kaushik/Experiment_10_2/Training_Images/",
+    source_co_ord_path_train = filedialog.askopenfilename(initialdir="/hri/localdisk/ThesisProject/Kaushik/Kaushik/Outdoor_exp_1/",
                                                           filetypes=(("Text File", "*.txt"), ("All Files", "*.*")),
                                                           title="Choose a file."
                                                           )
@@ -65,13 +65,13 @@ def m_folder_open_train():
 def m_folder_open_test():
     global source_path_test
     source_path_test = filedialog.askdirectory(
-        initialdir="/hri/localdisk/ThesisProject/Kaushik/Kaushik/Experiment_10_2/Testing_Images/Path_1/",
+        initialdir="/hri/localdisk/ThesisProject/Kaushik/Kaushik/Outdoor_exp_1/test/Kodak/sub0/",
         title="Select Testing Images")
     source_path_test = source_path_test + '/'
 
     global source_co_ord_path_test
 
-    source_co_ord_path_test = filedialog.askopenfilename(initialdir="/hri/localdisk/ThesisProject/Kaushik/Kaushik/Experiment_10_2/Testing_Images/",
+    source_co_ord_path_test = filedialog.askopenfilename(initialdir="/hri/localdisk/ThesisProject/Kaushik/Kaushik/Outdoor_exp_1/",
                                                          filetypes=(("Text File", "*.txt"), ("All Files", "*.*")),
                                                          title="Choose a file."
                                                          )
@@ -82,13 +82,15 @@ def move_coordinates_files(filepath, source_train, source_test):
     coordinates_path_array = []
     shutil.copy(source_train, dest)
     os.chdir(filepath)
-    old_name_train = 'coordinates_wp0_Kodak.txt'
+    old_name_train = 'coordinates_train.txt'
+    # 'coordinates_wp0_Kodak.txt'
     new_name_train = 'coordinates_train.txt'
     shutil.move(old_name_train, new_name_train)
     coordinates_path_array.append(dest + '/' + new_name_train)
     if is_train_test_data_distinct:
         shutil.copy(source_test, dest)
-        old_name_test = 'coordinates_wp0_Kodak.txt'
+        old_name_test = 'coordinates_test.txt'
+        # 'coordinates_wp0_Kodak.txt'
         new_name_test = 'coordinates_test.txt'
         shutil.move(old_name_test, new_name_test)
         coordinates_path_array.append(dest + '/' + new_name_test)

@@ -16,10 +16,11 @@ testSet_2 = []
 test_flag = []
 trainSet = []
 '''
-outputPath = 'hri/localdisk/ThesisProject/Kaushik/Kaushik/Testing_Sample_Script/05032020-132611/'
-trainSetCoordsPath = 'hri/localdisk/ThesisProject/Kaushik/Kaushik/Testing_Sample_Script/05032020-132611/coordinates_train.txt'
-testSetCoordsPath = 'hri/localdisk/ThesisProject/Kaushik/Kaushik/Testing_Sample_Script/05032020-132611/coordinates_test.txt'
-aruco = [160,144]
+outputPath = '/hri/localdisk/ThesisProject/Kaushik/Kaushik/Testing_Sample_Script/10032020-083202/'
+trainSetCoordsPath = '/hri/localdisk/ThesisProject/Kaushik/Kaushik/Testing_Sample_Script/10032020-083202/coordinates_train.txt'
+testSetCoordsPath = '/hri/localdisk/ThesisProject/Kaushik/Kaushik/Testing_Sample_Script/10032020-083202/coordinates_test.txt'
+aruco = [160]
+m_id = str(aruco[0])
 train_test_data = True
 '''
 
