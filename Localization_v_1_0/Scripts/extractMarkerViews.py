@@ -56,7 +56,7 @@ def extractMarkerViews(markerId, imageFileName, imagePath, imageSuffix
             cx = int(points[:, 0].mean() + 0.5)
             cy = int(points[:, 1].mean() + 0.5)
             side = (math.sqrt((points[2][0] - points[3][0]) ** 2 + (points[2][1] - points[3][1]) ** 2))
-            img = align_view(img, np.array([cx, cy]), np.array([1440, 1440]))
+            # img = align_view(img, np.array([cx, cy]), np.array([1440, 1440]))
             """
             startX = int(cy + 10 - 2*side / 2)
             endX = int(cy + 30 + side / 2)
