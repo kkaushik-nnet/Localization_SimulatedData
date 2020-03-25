@@ -1,3 +1,0 @@
-/hri/localdisk/ThesisProject/Kaushik/Version_1_8/MarkerDetection/build/utils/CMakeFiles/detect_markers.dir
-/hri/localdisk/ThesisProject/Kaushik/Version_1_8/MarkerDetection/build/CMakeFiles/uninstall.dir
-/hri/localdisk/ThesisProject/Kaushik/Version_1_8/MarkerDetection/build/src/CMakeFiles/aruco.dir

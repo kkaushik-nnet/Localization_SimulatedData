@@ -45,12 +45,13 @@ def m_folder():
 /hri/localdisk/ThesisProject/Kaushik/Simulator_data/TwoMarkers/test/
 /hri/localdisk/ThesisProject/Kaushik/Simulator_data/Coordinates/Test_Cords/
 '''
+# /hri/localdisk/ThesisProject/Kaushik/Kaushik/17.03.2020_Morning/
 
 
 def m_folder_open_train():
     global source_path_train
     source_path_train = filedialog.askdirectory(
-        initialdir="/hri/localdisk/ThesisProject/Kaushik/Kaushik/17.03.2020_Morning/Training_Data/",
+        initialdir="/hri/localdisk/ThesisProject/Kaushik/Kaushik/17.03.2020_Morning/Training_Data",
         title="Select Training Images")
     source_path_train = source_path_train + '/'
 
@@ -65,7 +66,7 @@ def m_folder_open_train():
 def m_folder_open_test():
     global source_path_test
     source_path_test = filedialog.askdirectory(
-        initialdir="/hri/localdisk/ThesisProject/Kaushik/Kaushik/17.03.2020_Morning/Testing_Data/",
+        initialdir="/hri/localdisk/ThesisProject/Kaushik/Kaushik/17.03.2020_Morning/Testing_Data",
         title="Select Testing Images")
     source_path_test = source_path_test + '/'
 

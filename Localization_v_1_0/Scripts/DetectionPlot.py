@@ -56,5 +56,5 @@ def detection_plot(outputPath,trainSetCoordsPath,detectionResultsTrainSetPath,m_
     plt.rc('legend', **{'fontsize': 6})
     plt.gca().set_aspect('equal')  # , adjustable='box'
     plt.tick_params(labelsize=12)
-    plt.savefig(outputPath+'/' + 'single_marker_result_'+m_id+'_'+var_type+'.jpg', dpi=1200, bbox_inches='tight')
+    plt.savefig(outputPath+'/' + 'single_marker_result_'+m_id+'_'+var_type+'.pdf', dpi=1200, bbox_inches='tight')
     plt.show()

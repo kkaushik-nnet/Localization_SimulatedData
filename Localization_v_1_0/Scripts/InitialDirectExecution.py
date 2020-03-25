@@ -5,10 +5,10 @@ from time import sleep
 from tkinter import *
 from tkinter import filedialog
 
-from Scripts.Aruco_Marker_Input import enter_array
-from Scripts.BuildCPPFiles import buildCPP
-from Scripts.CopyImagesFromSrc import copyUniqueImages
-from Scripts.Execute_Template_test import execute_template_method
+from Localization_v_1_0.Scripts.Aruco_Marker_Input import enter_array
+from Localization_v_1_0.Scripts.BuildCPPFiles import buildCPP
+from Localization_v_1_0.Scripts.CopyImagesFromSrc import copyUniqueImages
+from Localization_v_1_0.Scripts.Execute_Template_test import execute_template_method
 
 folder_path = '/hri/localdisk/ThesisProject/Kaushik/Kaushik/Testing_Sample_Script/'
 image_format = '.jpg'
@@ -31,7 +31,7 @@ source_path = ''
 def m_folder():
     global source_path
     source_path = filedialog.askdirectory(
-        initialdir="/hri/localdisk/ThesisProject/Kaushik/Kaushik/Testing_Sample_Script/05032020-153713/",
+        initialdir="/hri/localdisk/ThesisProject/Kaushik/Kaushik/Testing_Sample_Script/",
         title="Select Source Path")
     source_path = source_path + '/'
 # "/hri/localdisk/ThesisProject/Kaushik/Kaushik/Experiment_10_2/Training_Images/Path_1/"
@@ -47,55 +47,27 @@ def m_folder():
 '''
 
 
-def m_folder_open_train():
-    global source_path_train
-    source_path_train = filedialog.askdirectory(
-        initialdir="/hri/localdisk/ThesisProject/Kaushik/Kaushik/Experiment_10_2/Training_Images/Path_1/",
-        title="Select Training Images")
-    source_path_train = source_path_train + '/'
-
-    global source_co_ord_path_train
-
-    source_co_ord_path_train = filedialog.askopenfilename(initialdir="/hri/localdisk/ThesisProject/Kaushik/Kaushik/Experiment_10_2/Training_Images",
-                                                          filetypes=(("Text File", "*.txt"), ("All Files", "*.*")),
-                                                          title="Choose a file."
-                                                          )
-
-
-def m_folder_open_test():
-    global source_path_test
-    source_path_test = filedialog.askdirectory(
-        initialdir="/hri/localdisk/ThesisProject/Kaushik/Kaushik/Experiment_10_2/Testing_Images/Path_1/",
-        title="Select Testing Images")
-    source_path_test = source_path_test + '/'
-
-    global source_co_ord_path_test
-
-    source_co_ord_path_test = filedialog.askopenfilename(initialdir="/hri/localdisk/ThesisProject/Kaushik/KaushikExperiment_10_2/Testing_Images/",
-                                                         filetypes=(("Text File", "*.txt"), ("All Files", "*.*")),
-                                                         title="Choose a file."
-                                                         )
-
-
 def move_coordinates_files(filepath, source_train, source_test):
     dest = filepath
     coordinates_path_array = []
     shutil.copy(source_train, dest)
     os.chdir(filepath)
-    old_name_train = 'coordinates_wp0_Kodak.txt'
+    old_name_train = 'coordinates_train.txt'
+    # 'coordinates_wp0_Kodak.txt'
     new_name_train = 'coordinates_train.txt'
     shutil.move(old_name_train, new_name_train)
     coordinates_path_array.append(dest + '/' + new_name_train)
     if is_train_test_data_distinct:
         shutil.copy(source_test, dest)
-        old_name_test = 'coordinates_wp0_Kodak.txt'
+        old_name_test = 'coordinates_test.txt'
+        # 'coordinates_wp0_Kodak.txt'
         new_name_test = 'coordinates_test.txt'
         shutil.move(old_name_test, new_name_test)
         coordinates_path_array.append(dest + '/' + new_name_test)
     return coordinates_path_array
 
 
-def create_folder_structure(aruco_marker_ids):
+def create_folder_structure(aruco_marker_ids,path_train,path_test):
     time_string = time.strftime("%d%m%Y-%H%M%S")
     directory_items = []
     extracted_folder_items = []
@@ -103,12 +75,12 @@ def create_folder_structure(aruco_marker_ids):
         current_working_folder = folder_path + time_string
         os.makedirs(current_working_folder)
         os.makedirs(current_working_folder + '/Evaluation_Arrays')
-        os.makedirs(current_working_folder + '/Training_Data')
+        # os.makedirs(current_working_folder + '/Training_Data')
 
         directory_items.append(current_working_folder)
         detection_build_utils = os.getcwd().replace('Scripts', 'MarkerDetection/build/utils/')
         directory_items.append(detection_build_utils)
-        training_folder = current_working_folder + '/Training_Data/'
+        training_folder = path_train
         directory_items.append(training_folder)
         run_train_detection = os.getcwd() + '/run_train_detection.sh'
         directory_items.append(run_train_detection)
@@ -118,8 +90,8 @@ def create_folder_structure(aruco_marker_ids):
         directory_items.append(train_csv)
 
         if is_train_test_data_distinct:
-            os.makedirs(current_working_folder + '/Testing_Data')
-            testing_folder = current_working_folder + '/Testing_Data/'
+            # os.makedirs(current_working_folder + '/Testing_Data')
+            testing_folder = path_test
             directory_items.append(testing_folder)
             run_test_detection = os.getcwd() + '/run_test_detection.sh'
             directory_items.append(run_test_detection)
@@ -167,23 +139,21 @@ if __name__ == "__main__":
     start_all_over = input("Do you want to start the process all over? [y/n]")
     if start_all_over == 'y':
         print("Choose Training Data and its Co-Ordinates File, Please browse")
-        browseBox = Tk()
-        Button(text="open Folder", width=30, command=m_folder_open_train()).pack()
-        browseBox.destroy()
-        browseBox.mainloop()
+        source_path_train = "/hri/localdisk/ThesisProject/Kaushik/Kaushik/Outdoor_exp_1/train/Kodak/sub0/"
+        source_co_ord_path_train = "/hri/localdisk/ThesisProject/Kaushik/Kaushik/Outdoor_exp_1/coordinates_train.txt"
 
         if is_train_test_data_distinct:
             print("Choose Testing Data and its Co-Ordinates File, Please browse")
-            browseBox = Tk()
-            Button(text="open Folder", width=30, command=m_folder_open_test()).pack()
-            browseBox.destroy()
-            browseBox.mainloop()
+            source_path_test = "/hri/localdisk/ThesisProject/Kaushik/Kaushik/Outdoor_exp_1/test/Kodak/sub0/"
+            source_co_ord_path_test = "/hri/localdisk/ThesisProject/Kaushik/Kaushik/Outdoor_exp_1/coordinates_test.txt"
 
         print("source_path_train : ", source_path_train)
         print("source_co_ord_path_train : ", source_co_ord_path_train)
         print("source_path_test : ", source_path_test)
         print("source_co_ord_path_test : ", source_co_ord_path_test)
 
+        if not is_train_test_data_distinct:
+            source_path_test = ''
         # id_1 = aruco_marker_id[0]
 
         print("Process starting", end='')
@@ -191,7 +161,8 @@ if __name__ == "__main__":
             print(".", end='')
             sleep(0.1)
 
-        items_in_dir, extraction_folders = create_folder_structure(aruco_marker_id)
+        items_in_dir, extraction_folders = create_folder_structure(aruco_marker_id,source_path_train,source_path_test)
+        print("items_in_dir[2] :", items_in_dir[2])
         '''
         print("items in dir are : ")
         print(items_in_dir)
@@ -201,7 +172,7 @@ if __name__ == "__main__":
         '''
         coordinates_path = move_coordinates_files(items_in_dir[0], source_co_ord_path_train, source_co_ord_path_test)
 
-        copyUniqueImages(coordinates_path[0], source_path_train, items_in_dir[2])
+        # copyUniqueImages(coordinates_path[0], source_path_train, items_in_dir[2])
         train_img_count = count_of_images(items_in_dir[2])
         train_set_items = [items_in_dir[0],
                            items_in_dir[1],
@@ -220,7 +191,7 @@ if __name__ == "__main__":
         test_set_items = []
 
         if is_train_test_data_distinct:
-            copyUniqueImages(coordinates_path[1], source_path_test, items_in_dir[6])
+            # copyUniqueImages(coordinates_path[1], source_path_test, items_in_dir[6])
             test_img_count = count_of_images(items_in_dir[6])
             test_set_items = [items_in_dir[0],
                               items_in_dir[1],

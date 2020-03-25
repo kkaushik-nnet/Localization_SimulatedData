@@ -83,8 +83,13 @@ def extractMarkerViews(markerId, imageFileName, imagePath, imageSuffix
             img = align_view(img, np.array([cx, cy]), np.array([1440, 1440]))
 
             # Center Extraction
+
             marker = img[int(cy + 10 - 2*side / 2):int(cy + 30 + side / 2),
                             int(cx + 10 + side / 2):int(cx + 30 + 4*side / 2)]
+
+            marker_1 = img[int(cy - 10 - 5*side / 2):int(cy + 10 - side / 2),
+                            int(cx - 10 - 2*side / 2):int(cx + 10 + 2*side / 2)]
+            # 1.99
 
             '''
             # bottom extraction
@@ -99,10 +104,15 @@ def extractMarkerViews(markerId, imageFileName, imagePath, imageSuffix
             # Left Extraction
             marker = img[int(cy - 10 - side / 2):int(cy + 10 + side / 2),
                             int(cx - 10 - 3*side / 2):int(cx + 10 - side / 2)]
-                                                                                                                
+            marker = img[int(cy - 10 - side / 2):int(cy + 10 + side / 2),
+                            int(cx - 10 + side / 2):int(cx + 10 + 3*side / 2)]
+            # 1.99                                                                                                                
             marker = img[int(cy - 10 + h / 2):int(cy + 10 + 3 * h / 2),
                             int(cx - 10 - w / 2):int(cx + 10 + w / 2)]
-            
+                            
+            # Left side complete big image
+            marker = img[int(cy + 10 - 2*side / 2):int(cy + 30 + side / 2),
+                            int(cx - 30 - 4*side / 2):int(cx - 10 - side / 2)]            
             '''
             # marker = img[int(cy - 10 - side / 2):int(cy + 10 + side/2 ) , int(cx - 10 - 3*side / 2 ):int(cx - 10 -
             # side / 2 )]
