@@ -2,8 +2,15 @@
   <dictionary name="kkaushik">
     <words>
       <w>aruco</w>
+      <w>datasets</w>
       <w>kaushik</w>
+      <w>localdisk</w>
+      <w>omni</w>
       <w>regressor</w>
+      <w>xmax</w>
+      <w>xmin</w>
+      <w>ymax</w>
+      <w>ymin</w>
     </words>
   </dictionary>
 </component>

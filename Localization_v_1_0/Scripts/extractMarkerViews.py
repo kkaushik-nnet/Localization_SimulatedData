@@ -57,38 +57,16 @@ def extractMarkerViews(markerId, imageFileName, imagePath, imageSuffix
             cy = int(points[:, 1].mean() + 0.5)
             side = (math.sqrt((points[2][0] - points[3][0]) ** 2 + (points[2][1] - points[3][1]) ** 2))
             # img = align_view(img, np.array([cx, cy]), np.array([1440, 1440]))
-            """
-            startX = int(cy + 10 - 2*side / 2)
-            endX = int(cy + 30 + side / 2)
-            startY = int(cx + 30 + 4*side / 2)
-            endY = int(cx + 30 + 4*side / 2)
-            
-            #cv2.line(img, (int(points[0,0] + 100) , int(points[0,1] + 100)), (int(points[1,0]+ 100), int(points[1,1]+ 100)), (0,0,255), 10)
-            #cv2.line(img, (int(points[0,0]), int(points[0,1])), (int(points[3,0]), int(points[3,1])), (0,0,255), 10)
-            #cv2.line(img, (int(points[1,0]), int(points[1,1])), (int(points[2,0]), int(points[2,1])), (0,0,255), 10)        
-            #cv2.line(img, (int(points[3,0]), int(points[3,1])), (int(points[2,0]), int(points[2,1])), (0,0,255), 10)
-            
-            # startX, startY, endX, endY = 500, 500, 2000, 2000
-            startX , startY , endX , endY = int(cy + 10 - 2*side / 2) , int(cy + 30 + side / 2) , int(cx + 30 + 4*side / 2) , int(cx + 30 + 4*side / 2)
-            cv2.rectangle(img, (startX, startY), (endX, endY), (0, 0, 255), 10)
-            cv2.namedWindow("Image" , cv2.WINDOW_NORMAL )
-            cv2.resizeWindow("Image", 600, 600)
-            cv2.imshow("Image", img)
-            cv2.waitKey(0)
-            """
-            # print("cx: %d, cy: %d" % (cx, cy))
-            # print("points[2][0] %d, points[2][1] %d" % (points[2][0], points[2][1]))
-            # print("Width : %d" % (math.sqrt((points[2][0] - points[3][0]) ** 2 + (points[2][1] - points[3][1]) ** 2)))
 
             img = align_view(img, np.array([cx, cy]), np.array([1440, 1440]))
 
             # Center Extraction
 
-            marker = img[int(cy + 10 - 2*side / 2):int(cy + 30 + side / 2),
-                            int(cx + 10 + side / 2):int(cx + 30 + 4*side / 2)]
+            marker = img[int(cy - 10 - 2*side / 2):int(cy + 10 - side / 2),
+                            int(cx - 10 + side / 2):int(cx + 10 + 4*side / 2)]
 
-            marker_1 = img[int(cy - 10 - 5*side / 2):int(cy + 10 - side / 2),
-                            int(cx - 10 - 2*side / 2):int(cx + 10 + 2*side / 2)]
+            marker_1 = img[int(cy - 10 + h / 2):int(cy + 10 + 3 * h / 2),
+                            int(cx - 10 - w / 2):int(cx + 10 + w / 2)]
             # 1.99
 
             '''

@@ -9,6 +9,12 @@ from sklearn.metrics import mean_absolute_error
 
 testSet = [ ]
 testCoords = [ ]
+'''
+outputPath = '/hri/localdisk/ThesisProject/LabledImageResults/'
+trainSetCoordsPath = '/hri/localdisk/ThesisProject/MO_New/coordinates_wp0_Kodak.txt'
+testSetCoordsPath = '/hri/localdisk/ThesisProject/M1/coordinates_wp0_Kodak.txt'
+train_test_data = False
+'''
 
 
 def evaluate_individual_performances(outputPath , trainSetCoordsPath , testSetCoordsPath , aruco , train_test_data) :
@@ -17,22 +23,66 @@ def evaluate_individual_performances(outputPath , trainSetCoordsPath , testSetCo
     # m_id = str(aruco[0])
     m_id = aruco
     # Regression Degree
+    print('line 1')
     DEG = 2
 
     # Train Set
     # Slow Feature Values
-    trainSetPath = outputPath + '/Evaluation_Arrays/' + 'train_' + m_id + '_slowFeatures.npy'
-
+    trainSetPath = outputPath + 'train_Hut' + '_slowFeatures.npy'
+    print('line 2')
     # Marker detection results
-    detectionResultsTrainSetPath = outputPath + '/' + 'result_train.csv'
-
+    detectionResultsTrainSetPath = outputPath + '/' + 'Detection_Results_train.csv'
+    print('line 3')
     # Load Files
     trainSet = np.load ( trainSetPath )
+    print('line 4')
     trainSetCoords = np.loadtxt ( trainSetCoordsPath , delimiter = ',' , usecols = (4 , 5) )
+    print('line 5')
     # trainSetCoords = np.loadtxt(trainSetCoordsPath)[:, 0:2]
     detectionResultsTrainSet = pd.read_csv ( detectionResultsTrainSetPath )
-    # detectionResultsTrainSet[['image']].values[detectionResultsTrainSet[['label']]==0]
-
+    '''
+    imageSource_train = '/hri/localdisk/ThesisProject/MO_New/Extract_Hut/'
+    
+    f_train = []
+    
+    for (dir_path, dir_names, filenames_train) in walk(imageSource_train):
+            f_train.extend(filenames_train)
+    break
+        
+    # clearing the part of .jpg from the string and converting it into int
+    fileNumbers_train = []
+    
+    for i in range(0, len(f_train)):
+            fileNumbers_train.append(int(f_train[i][:-4]))
+            
+    fileNumbers_train.sort()
+    del f_train
+    f_train = fileNumbers_train
+    trainCoords = []
+    
+    for i in range(0,len(f_train)):
+            trainCoords.append(trainSetCoords[f_train[i]])
+    
+    imageSource_test = '/hri/localdisk/ThesisProject/M1/Extract_Hut/'
+    
+    f_test = []
+    
+    for (dir_path, dir_names, filenames_test) in walk(imageSource_test):
+            f_test.extend(filenames_test)
+    break
+    
+    # clearing the part of .jpg from the string and converting it into int
+    fileNumbers_test = []
+    for i in range(0, len(f_test)):
+            fileNumbers_test.append(int(f_test[i][:-4]))
+            
+    fileNumbers_test.sort()
+    del f_test
+    testCoords = []
+    f_test = fileNumbers_test
+    for i in range(0,len(f_test)):
+            testCoords.append(trainSetCoords[f_test[i]])
+    '''
     markerSquaresTrainSet = detectionResultsTrainSet [
         [ m_id + '_bb_x1' , m_id + '_bb_y1' , m_id + '_bb_x2' , m_id + '_bb_y2' , m_id + '_bb_x3' , m_id + '_bb_y3' ,
           m_id +
@@ -51,8 +101,8 @@ def evaluate_individual_performances(outputPath , trainSetCoordsPath , testSetCo
 
     # Test set
     if train_test_data :
-        testSetPath = outputPath + '/Evaluation_Arrays/' + 'test_' + m_id + '_slowFeatures.npy'
-        detectionResultsTestSetPath = outputPath + '/' + 'result_test.csv'
+        testSetPath = outputPath + 'test_Hut' + '_slowFeatures.npy'
+        detectionResultsTestSetPath = outputPath + '/' + 'Detection_Results_test.csv'
         testSet = np.load ( testSetPath )
         testSetCoords = np.loadtxt ( testSetCoordsPath , delimiter = ',' , usecols = (4 , 5) )
         # testSetCoords = np.loadtxt(testSetCoordsPath)[:, 0:2]
@@ -150,5 +200,4 @@ if __name__ == "__main__" :
         print ( "     Model Name          # Trained model name" )
         print ( "\nExample: python executeTestSet.py images/ 1600 .png train\n" )
         sys.exit ( )
-    evaluate_individual_performances ( sys.argv [ 1 ] , sys.argv [ 2 ] , sys.argv [ 3 ] , sys.argv [ 4 ] ,
-                                       sys.argv [ 5 ] )
+    evaluate_individual_performances(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5])
